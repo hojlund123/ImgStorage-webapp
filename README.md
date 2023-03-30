@@ -19,7 +19,12 @@ pip install Flask flask-login cryptography
 ## Run the app
 
 ```
+# Only localhost
 flask run
+
+# Open to the local network
+flask run --host=0.0.0.0
 ```
 
-Access the application in your browser by visiting http://localhost:5000/.
+Access the application in your browser by visiting 
+http://localhost:5000/
