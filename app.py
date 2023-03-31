@@ -1,5 +1,5 @@
 # Import necessary libraries
-from flask import Flask, render_template, request, redirect, url_for, flash, send_file
+from flask import Flask, render_template, session, request, redirect, url_for, flash, send_file
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from cryptography.fernet import Fernet
 import os
@@ -43,6 +43,14 @@ def login():
         else:
             flash('Invalid username or password')
     return render_template('login.html')
+#
+@app.route('/index')
+def index():
+    if 'logged_in' not in session or not session['logged_in']:
+        return redirect(url_for('login'))
+    else:
+        files = [] # You should replace this with code that actually retrieves the list of files for the current user
+        return render_template('index.html', files=files)
 
 # Define the route for the logout page
 @app.route('/logout')
